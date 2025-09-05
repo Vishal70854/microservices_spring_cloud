@@ -2,8 +2,10 @@ package com.in28minutes.microservices.currency_conversion_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
+@EnableFeignClients	// this annotation is needed inorder to use Feign Client for calling currency-exchange from currency-conversion-service
 public class CurrencyConversionServiceApplication {
 
 	public static void main(String[] args) {
