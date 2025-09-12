@@ -16,6 +16,9 @@ public class CurrencyConversionController {
     @Autowired
     private CurrencyExchangeProxy proxy;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     // this controller will be using Feign Client
     // to communicate with currency-exchange from currency-conversion service
 
@@ -30,7 +33,8 @@ public class CurrencyConversionController {
         uriVariables.put("from", from);
         uriVariables.put("to",to);
         // create new RestTemplate bean inorder to connect to currency-exchange-service and get details from that service to this currency-conversion-service
-        ResponseEntity<CurrencyConversion> responseEntity = new RestTemplate().getForEntity(
+//        ResponseEntity<CurrencyConversion> responseEntity = new RestTemplate().getForEntity(
+        ResponseEntity<CurrencyConversion> responseEntity = restTemplate.getForEntity(
                 "http://localhost:8000/currency-exchange/from/{from}/to/{to}",
                 CurrencyConversion.class,
                 uriVariables);// uriVariables will be reading values from uri paths
